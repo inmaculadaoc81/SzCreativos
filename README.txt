@@ -1,7 +1,8 @@
 SZ CREATIVOS — MARKETING DIGITAL PARA VETERINARIOS (MADRID)
 
-Sitio multipágina (home + 8 páginas de servicio en /servicios/), sin
-chatbot n8n (no lo incluye, a diferencia de otras webs de la familia).
+Sitio multipágina (home + 8 páginas de servicio en /servicios/). Al
+principio no incluía chatbot n8n (a diferencia de otras webs de la
+familia); se ha añadido después, ver más abajo.
 
 DOMINIO:
 https://szcreativos.com/
@@ -15,8 +16,13 @@ REVISIÓN DE CÓDIGO:
 - Menú móvil: no existía botón de menú (.links se ocultaba a partir de
   950px sin alternativa). Añadido .menu-btn + desplegable #mobileMenu en
   las 9 páginas del sitio (home + 8 servicios).
-- No hay chatbot n8n en este sitio, así que no aplicaba el fix de
-  colisión [class*="chat-window"] ni el borde blanco del chat.
+- Chatbot n8n: no existía en ninguna página. Añadido en las 9 páginas del
+  sitio (home + 8 servicios), con el mismo webhook compartido de la
+  familia y textos en español. Posicionado por encima del botón de
+  WhatsApp (bottom:96px vs bottom:24px del WhatsApp) para que no se
+  superpongan, con borde blanco estándar y protección
+  :not([class*="toggle"]) contra la colisión conocida del selector
+  [class*="chat-window"].
 - vercel.json: NO EXISTÍA. Añadido ({"cleanUrls":true,"trailingSlash":
   false}), necesario porque el sitemap ya usa URLs sin ".html"
   (/servicios/seo-veterinarias) — sin cleanUrls esas rutas no
