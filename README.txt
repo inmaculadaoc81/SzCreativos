@@ -3,13 +3,13 @@ SZ CREATIVOS — MARKETING DIGITAL PARA VETERINARIOS (MADRID)
 Sitio multipágina (home + 8 páginas de servicio en /servicios/), sin
 chatbot n8n (no lo incluye, a diferencia de otras webs de la familia).
 
-DOMINIO — PENDIENTE DE CONFIRMAR:
-El sitio no tenía dominio real configurado en ningún sitio: sitemap.xml
-usaba el placeholder "https://szcreativos.example/" y no había ninguna
-etiqueta canonical ni og:url en index.html. Se ha añadido canonical,
-og:url, robots.txt (Sitemap:) y el "url" del JSON-LD usando ese mismo
-placeholder, para no dejarlos vacíos, pero deben actualizarse en cuanto
-se confirme el dominio real.
+DOMINIO:
+https://szcreativos.com/
+El sitio no tenía dominio real configurado en ningún sitio (sitemap.xml
+usaba el placeholder "szcreativos.example" y no había canonical ni
+og:url en index.html). Confirmado por el cliente y aplicado en
+canonical, og:url, robots.txt (Sitemap:), sitemap.xml y el "url" del
+JSON-LD.
 
 REVISIÓN DE CÓDIGO:
 - Menú móvil: no existía botón de menú (.links se ocultaba a partir de

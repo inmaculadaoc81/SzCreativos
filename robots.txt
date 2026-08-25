@@ -1,3 +1,3 @@
 User-agent: *
 Allow: /
-Sitemap: https://szcreativos.example/sitemap.xml
+Sitemap: https://szcreativos.com/sitemap.xml
