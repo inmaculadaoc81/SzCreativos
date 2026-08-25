@@ -1,4 +1,4 @@
-const { google } = require("googleapis");
+const nodemailer = require("nodemailer");
 
 const clean = (value, max = 2500) =>
   String(value ?? "")
@@ -6,23 +6,31 @@ const clean = (value, max = 2500) =>
     .trim()
     .slice(0, max);
 
+let cachedTransporter = null;
+function getTransporter() {
+  if (cachedTransporter) return cachedTransporter;
+  const port = Number(process.env.SMTP_PORT || 465);
+  cachedTransporter = nodemailer.createTransport({
+    host: process.env.SMTP_HOST,
+    port,
+    secure: String(process.env.SMTP_SECURE ?? (port === 465 ? "true" : "false")) === "true",
+    auth: { user: process.env.SMTP_USER, pass: process.env.SMTP_PASS },
+    connectionTimeout: 15000,
+    greetingTimeout: 15000,
+    socketTimeout: 20000
+  });
+  return cachedTransporter;
+}
+
 module.exports = async function handler(req, res) {
-  const required = [
-    "GOOGLE_CLIENT_ID",
-    "GOOGLE_CLIENT_SECRET",
-    "GOOGLE_REFRESH_TOKEN",
-    "GOOGLE_EMAIL",
-    "CONTACT_EMAIL"
-  ];
+  const required = ["SMTP_HOST", "SMTP_PORT", "SMTP_USER", "SMTP_PASS"];
 
   if (req.method === "GET") {
     return res.status(200).json({
       ok: true,
       service: "SZ Creativos contacto API",
       node: process.version,
-      environment: Object.fromEntries(
-        required.map((key) => [key, Boolean(process.env[key])])
-      )
+      environment: Object.fromEntries(required.map((key) => [key, Boolean(process.env[key])]))
     });
   }
 
@@ -39,7 +47,7 @@ module.exports = async function handler(req, res) {
     if (missing.length) {
       return res.status(500).json({
         ok: false,
-        code: "MISSING_ENVIRONMENT_VARIABLES",
+        code: "MISSING_SMTP_ENV",
         missing
       });
     }
@@ -60,25 +68,9 @@ module.exports = async function handler(req, res) {
       });
     }
 
-    const auth = new google.auth.OAuth2(
-      process.env.GOOGLE_CLIENT_ID,
-      process.env.GOOGLE_CLIENT_SECRET
-    );
-
-    auth.setCredentials({
-      refresh_token: process.env.GOOGLE_REFRESH_TOKEN
-    });
-
-    await auth.getAccessToken();
-
-    const gmail = google.gmail({
-      version: "v1",
-      auth
-    });
-
     const subject = "Nueva consulta SZ Creativos";
 
-    const body = `
+    const html = `
       <h2>Nueva consulta SZ Creativos</h2>
       <p><b>Clínica:</b> ${company}</p>
       <p><b>Persona de contacto:</b> ${contactName}</p>
@@ -88,32 +80,25 @@ module.exports = async function handler(req, res) {
       <p><b>Objetivo / necesidad:</b><br>${message.replace(/\n/g, "<br>")}</p>
     `;
 
-    const raw = [
-      `From: SZ Creativos <${process.env.GOOGLE_EMAIL}>`,
-      `To: ${process.env.CONTACT_EMAIL}`,
-      `Reply-To: ${email}`,
-      `Subject: =?UTF-8?B?${Buffer.from(subject).toString("base64")}?=`,
-      "MIME-Version: 1.0",
-      "Content-Type: text/html; charset=UTF-8",
-      "",
-      body
-    ].join("\r\n");
-
-    await gmail.users.messages.send({
-      userId: "me",
-      requestBody: {
-        raw: Buffer.from(raw).toString("base64url")
-      }
+    const transporter = getTransporter();
+    await transporter.verify();
+    await transporter.sendMail({
+      from: `"SZ Creativos" <${process.env.SMTP_USER}>`,
+      to: process.env.CONTACT_EMAIL || process.env.SMTP_USER,
+      replyTo: email,
+      subject,
+      text: `Nueva consulta SZ Creativos\n\nClínica: ${company}\nPersona de contacto: ${contactName}\nTeléfono: ${phone}\nEmail: ${email}\nServicio de interés: ${service}\n\nObjetivo / necesidad:\n${message}`,
+      html
     });
 
     return res.status(200).json({ ok: true });
 
   } catch (error) {
-    console.error("SZ Creativos Gmail API error:", error);
+    console.error("SZ Creativos SMTP error:", error);
 
     return res.status(500).json({
       ok: false,
-      code: "EMAIL_SEND_FAILED"
+      code: "SMTP_SEND_FAILED"
     });
   }
 };
