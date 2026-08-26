@@ -41,6 +41,18 @@ REVISIÓN DE CÓDIGO:
   En Google, casi nadie lo sabe." + lead ampliando preocupación,
   consecuencia y solución.
 
+REVISIÓN ADICIONAL (pasada posterior):
+- Google Analytics: no existía. Añadido G-50LR4SDRYZ en las 9 páginas
+  del sitio (home + 8 páginas de servicio).
+- H1 acortado a formato afirmativo corto (≤10 palabras, sin
+  interrogación ni condicionales) siguiendo la norma actualizada de la
+  familia — el anterior tenía 12 palabras: "Tu clínica es excelente.
+  Nadie lo ve en Google." No se ha tocado el tamaño del H1: ya estaba
+  en clamp(43-70px), en línea con el estándar del resto de la familia.
+- No aplica middleware.mjs: las 8 páginas de /servicios/ son contenido
+  original activo, no hay eliminaciones en el historial (sitio
+  legítimamente multipágina).
+
 CAMBIO IMPORTANTE — formulario de contacto:
 api/contact.js usaba la API de Gmail vía OAuth2 (paquete "googleapis"),
 distinto al resto de la familia. Sustituido por el mismo patrón SMTP +
