@@ -102,3 +102,30 @@ REVISIÓN ADICIONAL (checklist unificado de la familia, a petición del cliente)
   círculo decorativo con un símbolo "✦", no una píldora con texto de
   marca); formulario correctamente conectado a /api/contact
   (form.js coincide con api/contact.js).
+
+REVISIÓN ADICIONAL (a petición del cliente, "colócale la caja de
+información como las otras"):
+- No existía la tarjeta de información de contacto (aside.info) que sí
+  tiene el resto de la familia en el hero. En su lugar había un bloque
+  puramente decorativo (.hero-art: paw-ring, logo flotante y bocadillo
+  de texto). Sustituido por la caja estándar de la familia, con el
+  mismo diseño visual de esta web (blobs redondeados, navy/cian):
+  - Dirección: C. Joaquín María López, 26 · 28015 Madrid (la misma
+    dirección compartida por el resto de negocios de la familia en
+    este mismo local; el README original decía que no había dirección
+    visible porque no se había añadido, no porque fuera una decisión
+    de negocio distinta).
+  - Horario, con festivos: Lunes a viernes 09:30–18:00 / Sábados,
+    domingos y días festivos estamos cerrados.
+  - Contacto: WhatsApp y formulario de la web (no se ha inventado un
+    teléfono; esta web solo usa esos dos canales, según su propia
+    topbar).
+  - Servicio: Marketing digital para clínicas veterinarias.
+  - Enlace "Ver ubicación y reseñas →" al mismo Google Business ya
+    usado en la sección de mapa.
+  - Actualizado también el schema.org: añadido streetAddress y
+    postalCode (antes solo tenía addressLocality "Madrid"), coherente
+    con la dirección ahora visible en la página.
+  - Las reglas CSS de los elementos decorativos anteriores
+    (.hero-art, .hero-logo, .paw-ring, .bubble) se han dejado
+    intactas, sin uso, según práctica habitual de la familia.
