@@ -20,6 +20,8 @@
 .google-block{background:var(--cream);position:relative;overflow:hidden}.google-inner{display:grid;grid-template-columns:1.1fr .9fr;gap:50px;align-items:center}.google-shape{min-height:360px;position:relative}.google-shape:before{content:"";position:absolute;width:320px;height:260px;left:5%;top:10%;background:var(--yellow);border-radius:60% 40% 50% 50% / 45% 65% 35% 55%;transform:rotate(-8deg)}.google-shape:after{content:"★ ★ ★ ★ ★";position:absolute;left:12%;top:33%;font-size:34px;letter-spacing:5px;color:var(--navy);font-weight:900}.google-card{position:absolute;right:0;bottom:3%;background:#fff;border-radius:999px 34px 34px 999px;padding:22px 28px;box-shadow:0 20px 45px #03336a13;max-width:310px}.gb-btn{display:inline-block;background:var(--navy);color:#fff;padding:14px 20px;border-radius:999px;font-weight:900;margin-top:13px}
 
 .map-section{padding:85px 0 30px}.map-wrap{display:grid;grid-template-columns:.7fr 1.3fr;gap:35px;align-items:center}.map-copy{padding:30px;background:#f6fbfe;border-radius:60px 24px 60px 24px}.map iframe{width:100%;height:340px;border:0;border-radius:55px 18px 55px 18px}
+.cal-frame{width:100%;height:720px;border:0;border-radius:18px}
+.privacy-link{color:var(--navy);text-decoration:underline}
 
 .contact{padding:40px 0 90px}.contact-blob{background:linear-gradient(135deg,var(--navy),#07579f);color:#fff;border-radius:70px 24px 70px 24px;padding:46px;display:flex;align-items:center;justify-content:space-between;gap:25px}.contact-blob h2{margin:0 0 8px;font-size:36px}.contact-blob p{margin:0;color:#d5e2ef}.contact-blob .wa-btn{white-space:nowrap}
 
@@ -34,7 +36,7 @@
 .seohero{padding:62px 0;background:var(--navy);color:#fff}.seohero h1{font-size:clamp(38px,4vw,56px);line-height:1.05;max-width:900px}.seo{padding:65px 0}.seogrid{display:grid;grid-template-columns:1.2fr .8fr;gap:40px}.cta{background:#f6fbfe;border-radius:50px 18px 50px 18px;padding:27px;height:max-content}.cta .wa-btn{width:100%;justify-content:center}
 
 @media(max-width:950px){.links{display:none}.menu-btn{display:block}.hero-grid,.strategy-grid,.google-inner,.map-wrap,.seogrid{grid-template-columns:1fr}.services{grid-template-columns:repeat(2,1fr)}.hero-art{min-height:380px}}
-@media(max-width:560px){.brand img{width:205px}.services{grid-template-columns:1fr}.hero h1{font-size:42px}.contact-blob{flex-direction:column;align-items:flex-start}.hero-logo{left:0;width:100%}.orbit{min-height:430px}}
+@media(max-width:560px){.brand img{width:205px}.services{grid-template-columns:1fr}.hero h1{font-size:42px}.contact-blob{flex-direction:column;align-items:flex-start}.hero-logo{left:0;width:100%}.orbit{min-height:430px}.cal-frame{height:760px}}
 
 /* ===== Menú Servicios corregido ===== */
 .drop{position:relative}

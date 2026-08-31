@@ -72,3 +72,33 @@ GOOGLE_REFRESH_TOKEN, GOOGLE_EMAIL) ya no se usan y pueden eliminarse de
 Vercel. package.json actualizado: quitada la dependencia "googleapis",
 añadida "nodemailer"; node engine ajustado a 22.x para igualar al resto
 de la familia.
+
+REVISIÓN ADICIONAL (checklist unificado de la familia, a petición del cliente):
+- Verificado primero, a petición del cliente: no aparece el correo
+  soporte@kelatos.com visible en ninguna de las 9 páginas del sitio
+  (ni siquiera en el schema.org, que aquí no incluye email). No hacía
+  falta ningún cambio en este punto.
+- BUG REAL — no existía ninguna sección de Cal.com en todo el sitio.
+  Añadida en index.html, entre la sección de mapa/Google Business y el
+  formulario: "Reserva una cita de 30 minutos" con el iframe
+  compartido de la familia
+  (https://cal.com/kelatos/30min?embed=true&theme=light), 720px de
+  alto en escritorio y 760px en móvil. Añadido enlace "Pedir cita" al
+  menú (desktop y móvil) en las 9 páginas del sitio.
+- BUG REAL — la casilla de política de privacidad existía pero el
+  texto no enlazaba a ningún sitio. Añadido el enlace estándar de la
+  familia a https://kelatos.com/privacy-policy/, resaltado en azul.
+- No aplica el aviso de horario/festivos: esta web no muestra
+  dirección física ni horario de atención (confirmado en el README
+  original, "no hay dirección visible en la web"); solo hay un
+  formulario y WhatsApp como canales de contacto.
+- No se ha añadido franja de aviso de servicio técnico independiente:
+  no aplica a este negocio (agencia de marketing digital para
+  veterinarios, sin el enfoque de reparación de equipos del resto de
+  la familia).
+- Verificado sin bugs: no hay ningún botón de teléfono que necesite
+  icono a juego con WhatsApp (solo existe un canal de CTA, WhatsApp);
+  no hay ninguna etiqueta rotada tipo hero-chip (.paw-ring es un
+  círculo decorativo con un símbolo "✦", no una píldora con texto de
+  marca); formulario correctamente conectado a /api/contact
+  (form.js coincide con api/contact.js).
