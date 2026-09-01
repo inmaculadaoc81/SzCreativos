@@ -129,3 +129,27 @@ información como las otras"):
   - Las reglas CSS de los elementos decorativos anteriores
     (.hero-art, .hero-logo, .paw-ring, .bubble) se han dejado
     intactas, sin uso, según práctica habitual de la familia.
+
+REVISIÓN ADICIONAL (checklist unificado de la familia, a petición del cliente — repo 48/48, ÚLTIMO REPOSITORIO):
+- Verificado: enlace de Cal.com ya actualizado con attendeePhoneNumber
+  y overlayCalendar.
+- Verificado: el correo soporte@kelatos.com no aparece visible.
+- Verificado: el mensaje prellenado de WhatsApp ya usa "¡Hola SZ
+  Creativos!" en las tres ubicaciones (hero, contacto y flotante).
+- Verificado: el menú móvil (#mobileMenu) ya tenía el script de
+  cierre al pulsar un enlace.
+- Verificado: sin iconos ni imágenes con proporciones fijas
+  incorrectas.
+- Verificado: el H1 en móvil ya está en 48px.
+- Verificado: el único CTA del hero (.wa-btn) ya tenía
+  border-radius:999px y estado hover que oscurece el fondo. No
+  requería cambios.
+- Verificado: sin patrón de franja de insignias bajo el H1 (familia
+  Dyson); no aplica la reubicación.
+- No aplica la franja de aviso de servicio técnico independiente:
+  agencia de marketing digital para veterinarios, no reparación.
+- Sin cambios de código en este repo: todos los puntos del checklist
+  unificado ya estaban aplicados.
+
+--- Con este repo se completa el checklist unificado de la familia
+    (48/48 repositorios revisados). ---
