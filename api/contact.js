@@ -1,4 +1,4 @@
-const nodemailer = require("nodemailer");
+const nodemailer=require("./_correo.js");
 
 const clean = (value, max = 2500) =>
   String(value ?? "")
