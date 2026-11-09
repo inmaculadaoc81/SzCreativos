@@ -1,5 +1,7 @@
 const nodemailer=require("./_correo.js");
 
+const EMAIL_RE = /^[^\s@"(),:;<>[\]\\]+@[^\s@"(),:;<>[\]\\]+\.[a-z]{2,}$/i;
+
 const clean = (value, max = 2500) =>
   String(value ?? "")
     .replace(/[<>]/g, "")
@@ -53,6 +55,9 @@ module.exports = async function handler(req, res) {
     }
 
     const data = req.body || {};
+    if (clean(data.website)) return res.status(200).json({ ok: true });
+    const ts = Number(data.ts);
+    if (!ts || Date.now() - ts < 2000) return res.status(200).json({ ok: true });
 
     const company = clean(data.company, 120);
     const contactName = clean(data.contact_name, 120);
@@ -65,6 +70,12 @@ module.exports = async function handler(req, res) {
       return res.status(400).json({
         ok: false,
         code: "INVALID_FORM_DATA"
+      });
+    }
+    if (!EMAIL_RE.test(email)) {
+      return res.status(400).json({
+        ok: false,
+        code: "INVALID_EMAIL"
       });
     }
 

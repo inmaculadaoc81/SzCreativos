@@ -1,5 +1,6 @@
 
 const form = document.querySelector('#contact-form');
+const formLoadedAt = Date.now();
 
 if (form) {
   form.addEventListener('submit', async (e) => {
@@ -9,7 +10,7 @@ if (form) {
     status.textContent = 'Enviando solicitud...';
     status.classList.remove('ok', 'error');
 
-    const payload = Object.fromEntries(new FormData(form).entries());
+    const payload = Object.assign(Object.fromEntries(new FormData(form).entries()), { ts: formLoadedAt });
 
     try {
       const response = await fetch('/api/contact', {
